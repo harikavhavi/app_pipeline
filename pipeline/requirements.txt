@@ -1,0 +1,22 @@
+mediapipe==0.10.14
+# mediapipe 0.10.14's legacy solutions API (mp.solutions.pose) breaks under
+# protobuf>=5 (upb backend removed FieldDescriptor.label, which
+# solution_base.py depends on) — pin below 5 so `pip install -r
+# requirements.txt` doesn't silently resurrect this. Run the pipeline in its
+# own venv (see README) — protobuf>=5 is required elsewhere (e.g. a
+# TensorFlow/Streamlit env) and the two cannot coexist in one environment.
+protobuf>=4.25.3,<5
+ultralytics==8.4.138
+opencv-python==4.10.0.84
+numpy==1.26.4
+scipy==1.13.0
+fastapi==0.111.0
+uvicorn==0.30.0
+python-multipart==0.0.9
+sse-starlette==2.1.0
+Pillow==10.3.0
+sqlalchemy==2.0.30
+filterpy==1.4.5
+python-dotenv==1.0.1
+pydantic==2.8.2
+google-genai==2.25.0

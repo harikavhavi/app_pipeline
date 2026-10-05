@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.env
+*.db
+data/raw_videos/*
+!data/raw_videos/.gitkeep
+data/weights/*
+!data/weights/.gitkeep
+data/annotations/*
+!data/annotations/.gitkeep
+data/session_videos/*
+!data/session_videos/.gitkeep
+.pytest_cache/

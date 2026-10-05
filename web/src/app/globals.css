@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  background: #07090f;
+  color: #f3f5f9;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #232838;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2d3346;
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  backdrop-filter: blur(12px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+  animation: fadeIn 0.35s ease both;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Scouting report PDF export (see SessionDetail's "Export PDF" button, which
+   calls window.print()) — hides app chrome and lets print-only content
+   through. Kept global rather than per-page since the sidebar/header live
+   in AppShell, shared by every portal. */
+.no-print {
+  display: block;
+}
+.print-only {
+  display: none;
+}
+@media print {
+  html, body {
+    background: #fff;
+    color: #111;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  /* The dark theme's Tailwind colors are compiled to fixed hex values, not
+     CSS custom properties, so they can't be swapped via a media query the
+     way a var()-based theme could — override the handful actually used on
+     report content by class instead. */
+  .bg-bg, .bg-bg-1, .bg-bg-2, [class*="bg-card"] {
+    background: #fff !important;
+  }
+  .text-t1, .text-t2, .text-t3, [class*="text-t"] {
+    color: #111 !important;
+  }
+  .border-border, [class*="border-border"] {
+    border-color: #d0d5dd !important;
+  }
+}
